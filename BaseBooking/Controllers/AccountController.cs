@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using BaseBooking.Models; // пространство имен UserContext и класса User
+using BaseBooking.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -13,8 +13,8 @@ namespace BaseBooking.Controllers
 {
     public class AccountController : Controller
     {
-        private UserContext db;
-        public AccountController(UserContext context)
+        private ApplicationContext db;
+        public AccountController(ApplicationContext context)
         {
             db = context;
         }

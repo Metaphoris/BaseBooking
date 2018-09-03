@@ -9,7 +9,7 @@ namespace BaseBooking.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new UserContext(serviceProvider.GetRequiredService<DbContextOptions<UserContext>>()))
+            using (var context = new ApplicationContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationContext>>()))
             {
                 if (!context.Users.Any())
                 {
@@ -34,13 +34,8 @@ namespace BaseBooking.Models
                         }
 
                     );
-
-                    context.SaveChanges();
                 }
-            }
-
-            using (var context = new ReservationContext(serviceProvider.GetRequiredService<DbContextOptions<ReservationContext>>()))
-            {
+            
                 if (!context.Reservations.Any())
                 {
                     context.Reservations.AddRange(
@@ -64,9 +59,9 @@ namespace BaseBooking.Models
                         }
 
                     );
-
-                    context.SaveChanges();
                 }
+
+                context.SaveChanges();
             }
         }
     }

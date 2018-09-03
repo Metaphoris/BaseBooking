@@ -13,9 +13,9 @@ namespace BaseBooking.Controllers
     {
         private readonly IStringLocalizer<ReservationController> _localizer;
 
-        private readonly ReservationContext _context;
+        private readonly ApplicationContext _context;
 
-        public ReservationController(ReservationContext context, IStringLocalizer<ReservationController> localizer)
+        public ReservationController(ApplicationContext context, IStringLocalizer<ReservationController> localizer)
         {
             _context = context;
             _localizer = localizer;

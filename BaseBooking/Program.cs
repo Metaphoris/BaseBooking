@@ -21,12 +21,9 @@ namespace BaseBooking
 
                 try
                 {
-                    var context = services.GetRequiredService<UserContext>();
+                    var context = services.GetRequiredService<ApplicationContext>();
                     context.Database.Migrate();
                     SeedData.Initialize(services);
-
-                    //var context2 = services.GetRequiredService<ReservationContext>();
-                    //context2.Database.Migrate();
                 }
                 catch (Exception ex)
                 {

@@ -34,10 +34,7 @@ namespace BaseBooking
                         options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                     });
 
-            services.AddDbContext<ReservationContext>(options => 
-                                                      options.UseSqlite("Data Source=Reservation.db"));
-
-            services.AddDbContext<UserContext>(options => 
+            services.AddDbContext<ApplicationContext>(options =>
                                                options.UseSqlite("Data Source=Reservation.db"));
         }
 
