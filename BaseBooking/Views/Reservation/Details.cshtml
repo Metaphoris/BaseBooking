@@ -1,0 +1,33 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@model BaseBooking.Models.Reservation
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@Localizer["Details reservation"]</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StartDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndDateTime)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">@Localizer["Edit"]</a> |
+    <a asp-action="Index">@Localizer["Back to List"]</a>
+</div>

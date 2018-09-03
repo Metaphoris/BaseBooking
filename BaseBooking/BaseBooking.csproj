@@ -6,10 +6,77 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Reservation\Create.cshtml" />
+    <Content Remove="Views\Reservation\Delete.cshtml" />
+    <Content Remove="Views\Reservation\Details.cshtml" />
+    <Content Remove="Views\Reservation\Edit.cshtml" />
+    <Content Remove="Views\Reservation\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Reservation\Create.cshtml" />
+    <None Include="Views\Reservation\Delete.cshtml" />
+    <None Include="Views\Reservation\Details.cshtml" />
+    <None Include="Views\Reservation\Edit.cshtml" />
+    <None Include="Views\Reservation\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Resources\Controllers.HomeController.ru.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Controllers.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controllers.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ontrollers.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ontrollers.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.HomeController.ru.resx">
+      <LastGenOutput>Controllers.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Models\CultureMiddleware.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Controllers.Designer.cs">
+      <DependentUpon>Controllers.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.Designer.cs">
+      <DependentUpon>Controllers.HomeController.ru.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Controllers\" />
+    <Folder Include="Resources\Views\" />
+    <Folder Include="Resources\Views\Home\" />
+    <Folder Include="Resources\Models\" />
+    <Folder Include="Resources\Views\Reservation\" />
+  </ItemGroup>
 </Project>

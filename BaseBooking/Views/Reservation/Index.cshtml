@@ -1,0 +1,45 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@model IEnumerable<BaseBooking.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>@Localizer["Base booking"]</h2>
+<p>
+    <a asp-action="Create">@Localizer["Create New"]</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDateTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDateTime)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">@Localizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">@Localizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">@Localizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
