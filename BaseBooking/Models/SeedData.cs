@@ -11,51 +11,41 @@ namespace BaseBooking.Models
         {
             using (var context = new ApplicationContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationContext>>()))
             {
-                if (!context.Users.Any())
+                if ((!context.Users.Any()) && (!context.Reservations.Any()))
                 {
+                    User Metaphoris = new User { Login = "Metaphoris", Password = "Met" };
+                    User Andromeda = new User { Login = "Andromeda", Password = "And" };
+                    User Einherjar = new User { Login = "Einherjar", Password = "Player" };
+
                     context.Users.AddRange(
 
-                        new User
-                        {
-                            Login = "Metaphoris",
-                            Password = "Met"
-                        },
-
-                        new User
-                        {
-                            Login = "Andromeda",
-                            Password = "And"
-                        },
-
-                        new User
-                        {
-                            Login = "Einherjar",
-                            Password = "Player"
-                        }
+                        Metaphoris,
+                        Andromeda,
+                        Einherjar
 
                     );
-                }
-            
-                if (!context.Reservations.Any())
-                {
+
                     context.Reservations.AddRange(
 
                         new Reservation
                         {
                             StartDateTime = DateTime.Today,
-                            EndDateTime = DateTime.Today.AddHours(3)
+                            EndDateTime = DateTime.Today.AddHours(3),
+                            user = Metaphoris
                         },
 
                         new Reservation
                         {
                             StartDateTime = DateTime.Today.AddHours(4),
-                            EndDateTime = DateTime.Today.AddHours(7)
+                            EndDateTime = DateTime.Today.AddHours(7),
+                            user = Andromeda
                         },
 
                         new Reservation
                         {
                             StartDateTime = DateTime.Today.AddHours(8),
-                            EndDateTime = DateTime.Today.AddHours(11)
+                            EndDateTime = DateTime.Today.AddHours(11),
+                            user = Einherjar
                         }
 
                     );
