@@ -78,5 +78,6 @@
     <Folder Include="Resources\Views\Home\" />
     <Folder Include="Resources\Models\" />
     <Folder Include="Resources\Views\Reservation\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
 </Project>

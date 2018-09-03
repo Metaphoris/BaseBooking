@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace BaseBooking.Models
 {
@@ -10,6 +9,6 @@ namespace BaseBooking.Models
         {
         }
 
-        public DbSet<BaseBooking.Models.Reservation> Reservation { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }

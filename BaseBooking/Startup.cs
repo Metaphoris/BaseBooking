@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BaseBooking.Models;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using BaseBooking.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BaseBooking
 {
@@ -31,8 +28,17 @@ namespace BaseBooking
                     .AddDataAnnotationsLocalization()
                     .AddViewLocalization();
 
-            services.AddDbContext<ReservationContext>(options =>
-                  options.UseSqlite("Data Source=Reservation.db"));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options =>
+                    {
+                        options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    });
+
+            services.AddDbContext<ReservationContext>(options => 
+                                                      options.UseSqlite("Data Source=Reservation.db"));
+
+            services.AddDbContext<UserContext>(options => 
+                                               options.UseSqlite("Data Source=Reservation.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +66,8 @@ namespace BaseBooking
             });
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

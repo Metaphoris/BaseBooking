@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BaseBooking.Models;
 using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BaseBooking.Controllers
 {
@@ -21,9 +22,10 @@ namespace BaseBooking.Controllers
         }
 
         // GET: Reservation
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Reservation.ToListAsync());
+            return View(await _context.Reservations.ToListAsync());
         }
 
         // GET: Reservation/Details/5
@@ -34,7 +36,7 @@ namespace BaseBooking.Controllers
                 return NotFound();
             }
 
-            var reservation = await _context.Reservation
+            var reservation = await _context.Reservations
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (reservation == null)
             {
@@ -77,7 +79,7 @@ namespace BaseBooking.Controllers
                 return NotFound();
             }
 
-            var reservation = await _context.Reservation.SingleOrDefaultAsync(m => m.ID == id);
+            var reservation = await _context.Reservations.SingleOrDefaultAsync(m => m.ID == id);
             if (reservation == null)
             {
                 return NotFound();
@@ -132,7 +134,7 @@ namespace BaseBooking.Controllers
                 return NotFound();
             }
 
-            var reservation = await _context.Reservation
+            var reservation = await _context.Reservations
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (reservation == null)
             {
@@ -147,7 +149,7 @@ namespace BaseBooking.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var reservation = await _context.Reservation.SingleOrDefaultAsync(m => m.ID == id);
+            var reservation = await _context.Reservations.SingleOrDefaultAsync(m => m.ID == id);
             CheckEditDelete(reservation);
 
             if (!ModelState.IsValid)
@@ -157,7 +159,7 @@ namespace BaseBooking.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Reservation.Remove(reservation);
+                _context.Reservations.Remove(reservation);
                 await _context.SaveChangesAsync();
             }
 
@@ -166,7 +168,7 @@ namespace BaseBooking.Controllers
 
         private bool ReservationExists(int id)
         {
-            return _context.Reservation.Any(e => e.ID == id);
+            return _context.Reservations.Any(e => e.ID == id);
         }
 
         #region Helpers
@@ -175,7 +177,7 @@ namespace BaseBooking.Controllers
         {
             if (ModelState.IsValid)
             {
-                var reservations = await _context.Reservation.Where(r => r.ID != reservation.ID).ToListAsync();
+                var reservations = await _context.Reservations.Where(r => r.ID != reservation.ID).ToListAsync();
                 var conflicts = reservations.Where(r => (r.StartDateTime <= reservation.EndDateTime) && (r.EndDateTime >= reservation.StartDateTime));
                 if (conflicts.Count() > 0)
                     ModelState.AddModelError(string.Empty, _localizer["You cannot create a reservation that intersects with another booking. Check the armor list."]);
@@ -207,7 +209,7 @@ namespace BaseBooking.Controllers
         {
             if (ModelState.IsValid)
             {
-                var reservationsDb = await _context.Reservation.Where(r => r.ID == reservation.ID).ToListAsync();
+                var reservationsDb = await _context.Reservations.Where(r => r.ID == reservation.ID).ToListAsync();
                 Reservation reservationDb = reservationsDb.First();
 
                 if ((reservationDb.EndDateTime <= DateTime.Now) || ((reservationDb.StartDateTime >= DateTime.Now) && (reservationDb.EndDateTime <= DateTime.Now)))
