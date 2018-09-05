@@ -123,4 +123,7 @@
   <data name="EndDateTime" xml:space="preserve">
     <value>Окончание репетиции</value>
   </data>
+  <data name="User" xml:space="preserve">
+    <value>Группа</value>
+  </data>
 </root>

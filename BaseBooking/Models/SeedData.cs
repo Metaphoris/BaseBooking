@@ -31,21 +31,21 @@ namespace BaseBooking.Models
                         {
                             StartDateTime = DateTime.Today,
                             EndDateTime = DateTime.Today.AddHours(3),
-                            user = Metaphoris
+                            User = Metaphoris
                         },
 
                         new Reservation
                         {
                             StartDateTime = DateTime.Today.AddHours(4),
                             EndDateTime = DateTime.Today.AddHours(7),
-                            user = Andromeda
+                            User = Andromeda
                         },
 
                         new Reservation
                         {
                             StartDateTime = DateTime.Today.AddHours(8),
                             EndDateTime = DateTime.Today.AddHours(11),
-                            user = Einherjar
+                            User = Einherjar
                         }
 
                     );

@@ -11,9 +11,9 @@ namespace BaseBooking.Controllers
 {
     public class ReservationController : Controller
     {
-        private readonly IStringLocalizer<ReservationController> _localizer;
+        readonly IStringLocalizer<ReservationController> _localizer;
 
-        private readonly ApplicationContext _context;
+        readonly ApplicationContext _context;
 
         public ReservationController(ApplicationContext context, IStringLocalizer<ReservationController> localizer)
         {
@@ -25,7 +25,7 @@ namespace BaseBooking.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Reservations.ToListAsync());
+            return View(await _context.Reservations.Include(r => r.User).ToListAsync());
         }
 
         // GET: Reservation/Details/5
@@ -57,7 +57,7 @@ namespace BaseBooking.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,StartDateTime,EndDateTime")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("ID,user,StartDateTime,EndDateTime")] Reservation reservation)
         {
             CheckDateTime(reservation);
             CheckIntersections(reservation);
@@ -92,7 +92,7 @@ namespace BaseBooking.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,StartDateTime,EndDateTime")] Reservation reservation)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,user,StartDateTime,EndDateTime")] Reservation reservation)
         {
             if (id != reservation.ID)
             {
