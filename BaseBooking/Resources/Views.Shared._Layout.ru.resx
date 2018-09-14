@@ -129,6 +129,9 @@
   <data name="Home" xml:space="preserve">
     <value>Домой</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
   <data name="Toggle navigation" xml:space="preserve">
     <value>Basculer la navigation-tog nav</value>
   </data>
