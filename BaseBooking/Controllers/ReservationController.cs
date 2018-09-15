@@ -64,6 +64,13 @@ namespace BaseBooking.Controllers
 
             if (ModelState.IsValid)
             {
+                // Get current user
+                User user = _context.Users.FirstOrDefault(u => u.Login == User.Identity.Name);
+
+                // Set user to reservation
+                reservation.User = user;
+
+                // Add reservation
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

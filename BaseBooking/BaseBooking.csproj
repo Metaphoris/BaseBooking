@@ -20,6 +20,7 @@
     <Content Remove="Views\Reservation\Details.cshtml" />
     <Content Remove="Views\Reservation\Edit.cshtml" />
     <Content Remove="Views\Reservation\Index.cshtml" />
+    <Content Remove="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Reservation\Create.cshtml" />
