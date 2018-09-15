@@ -132,6 +132,12 @@
   <data name="Logout" xml:space="preserve">
     <value>Выйти</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="Not logged in" xml:space="preserve">
+    <value>Не в системе</value>
+  </data>
   <data name="Toggle navigation" xml:space="preserve">
     <value>Basculer la navigation-tog nav</value>
   </data>

@@ -34,13 +34,21 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
+            <a asp-area="" asp-controller="Reservation" asp-action="Index" class="navbar-brand">@Localizer["Base booking"]</a>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Reservation" asp-action="Index" class="navbar-brand">@Localizer["Base booking"]</a></li>
+                <ul class="nav navbar-nav navbar-right">
                     <li><a asp-area="" asp-controller="Home" asp-action="About">@Localizer["About"]</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">@Localizer["Contact"]</a></li>
-                    <li class="navbar-brand">@User.Identity.Name</li>
-                    <li><a asp-area="" asp-controller="Account" asp-action="Logout" class="navbar-brand">@Localizer["Logout"]</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    { 
+                        <li class="navbar-brand">@User.Identity.Name</li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout" class="navbar-brand">@Localizer["Logout"]</a></li>
+                    }
+                    else
+                    {
+                        <li class="navbar-brand">@Localizer["Not logged in"]</li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login" class="navbar-brand">@Localizer["Login"]</a></li>
+                    }
                 </ul>
             </div>
         </div>
