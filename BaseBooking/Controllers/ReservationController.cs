@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BaseBooking.Controllers
 {
+    [Authorize]
     public class ReservationController : Controller
     {
         readonly IStringLocalizer<ReservationController> _localizer;
@@ -22,7 +23,6 @@ namespace BaseBooking.Controllers
         }
 
         // GET: Reservation
-        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Reservations.Include(r => r.User).ToListAsync());
