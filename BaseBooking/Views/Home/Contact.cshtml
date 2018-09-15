@@ -1,17 +1,16 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@{
     ViewData["Title"] = "Contact";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+
+<h2>@Localizer["Contact"]</h2>
+<hr/>
+<h3>@Localizer["Programmer contacts"]</h3>
 
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    <a>8-996-923-90-25</a><br/>
+    <a href="mailto:andreev.alexey.91@mail.ru">andreev.alexey.91@mail.ru</a><br/>
 </address>
